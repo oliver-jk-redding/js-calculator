@@ -101,7 +101,6 @@ function getInput(e) {
         var seqLength = seq.length;
         tempNum = percent(equation[equation.length-2], Number(tempNum.join("")));
         equation.push(tempNum);
-        console.log(tempNum);
         for(var i=seqLength; i>seqLength-numLength; i--) {
           seq.pop();
         }
@@ -173,15 +172,20 @@ function getInput(e) {
       equation = [];
       seq = [0];
       break; 
-    default:
-      if(!isNaN(seq[seq.length-1])) {
+    case "χ²":
+      if(!isNaN(seq[seq.length-1])) {        
+        var numLength = tempNum.length;
+        var seqLength = seq.length;
         tempNum = square(Number(tempNum.join("")));
         equation.push(tempNum);
-        seq[seq.length-1] = tempNum;
+        for(var i=seqLength; i>seqLength-numLength; i--) {
+          seq.pop();
+        }        
+        seq.push(tempNum);
         tempNum = [];
         displaySequence();
       }      
-      break;   
+      break;
   }
 }
 
